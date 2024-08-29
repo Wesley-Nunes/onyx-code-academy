@@ -1,0 +1,23 @@
+services:
+  front-end:
+    build:
+      context: ./onyx-code-academy-front-end
+    environment:
+      NODE_ENV: development
+    develop:
+      watch:
+        - action: sync
+          path: ./onyx-code-academy-front-end/src
+          target: /app/src
+          ignore:
+            - ./onyx-code-academy-front-end/node_modules/
+        - action: rebuild
+          path: package.json
+    ports:
+      - 3000:3000 
+  mock-server:
+    build:
+      context: ./onyx-code-academy-mock-server
+    ports:
+      - 4000:4000
+ 
